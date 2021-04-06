@@ -6,9 +6,13 @@ const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
 });
-console.log("Options (input number)");
-console.log("1 Login");
-console.log("2 Register");
+
+console.log(
+  `Options (input number)
+1 Login
+2 Register
+`
+);
 
 rl.question("Choose Action ", answer => {
   if (answer === "1") {
