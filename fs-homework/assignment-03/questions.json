@@ -1,0 +1,39 @@
+{
+  "questions": [
+    {
+      "meta": "When was half life 2 released",
+      "correct": "2004",
+      "all": ["2003", "2004", "2008", "2005"]
+    },
+    {
+      "meta": "Who is the developer of HADES(2020)",
+      "correct": "Supergiant Games",
+      "all": [
+        "Moon Studios",
+        "Supergiant Games",
+        "Yacht Club games",
+        "Motion Twin"
+      ]
+    },
+    {
+      "meta": "What is the most overrated game of the 21st century",
+      "correct": "The Last of Us 2",
+      "all": [
+        "Witcher 3",
+        "Horizon zero dawn",
+        "Star Wars: Fallen Order",
+        "The Last of Us 2"
+      ]
+    },
+    {
+      "meta": "When will The Elder Scrolls 6 be released",
+      "correct": "when bill gates says so",
+      "all": [
+        "holiday season 2028",
+        "never",
+        "when bill gates says so",
+        "not even god knows"
+      ]
+    }
+  ]
+}
