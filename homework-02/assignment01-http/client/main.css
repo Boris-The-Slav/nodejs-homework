@@ -58,7 +58,7 @@ body {
 }
 
 .posts-container {
-  background-color: #ffeaa7;
+  background-color: rgb(224, 224, 224);
   min-height: 44rem;
   width: 144rem;
   margin: 0 auto;
@@ -71,9 +71,10 @@ body {
 }
 
 .user-container {
+  background-color: rgb(241, 241, 241);
   font-size: 2rem;
   padding: 10px;
-  margin: 3px;
+  margin: 5px;
   border: 2px solid black;
   border-radius: 5px;
 }

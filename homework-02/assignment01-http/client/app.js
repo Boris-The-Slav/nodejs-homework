@@ -68,7 +68,8 @@ showFormBtn.addEventListener("click", () => {
   formContainer.style.display = showContainer ? "block" : "none";
 });
 
-postBtn.addEventListener("click", () => {
+postBtn.addEventListener("click", e => {
+  e.preventDefault();
   const newUser = getUserInputs();
   onAddNewUser(newUser);
 });
