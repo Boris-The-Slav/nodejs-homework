@@ -13,7 +13,7 @@ router.get("/", sessionValidator, roleValidator("user"), (req, res) => {
 //add new post
 router.post("/", sessionValidator, roleValidator("user"), (req, res) => {
   postsController
-    .addNewPost(req.body)
+    .addNewPost({ ...req.body, author: req.session.username })
     .then(data => res.status(201).send(data))
     .catch(err => res.status(401).send(err));
 });

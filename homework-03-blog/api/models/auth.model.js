@@ -17,7 +17,11 @@ class AuthModel {
               bcrypt.compareSync(credentials.password, user.password)
           );
           if (user) {
-            resolve({ message: "user logged in", role: user.role });
+            resolve({
+              message: "user logged in",
+              role: user.role,
+              username: user.username,
+            });
           } else {
             reject({ message: "invalid credentials" });
           }
