@@ -6,6 +6,12 @@ class PostsModel {
   getPosts = () => {
     return fetch(DB_URL + ".json", { method: "GET" }).then(res => res.json());
   };
+
+  getPostByID = id => {
+    return fetch(`${DB_URL}/${id}.json`, { method: "GET" }).then(res =>
+      res.json()
+    );
+  };
   addNewPost = post => {
     return fetch(DB_URL + ".json", {
       method: "POST",

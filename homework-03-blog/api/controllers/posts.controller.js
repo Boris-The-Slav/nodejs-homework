@@ -5,6 +5,9 @@ class PostsController {
   fetchAllPosts() {
     return postsModel.getPosts();
   }
+  fetchPostById(id) {
+    return postsModel.getPostByID(id);
+  }
   addNewPost(post) {
     return postsModel.addNewPost(post);
   }

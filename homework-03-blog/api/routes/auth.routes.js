@@ -20,6 +20,9 @@ router.post("/login", (req, res) => {
         req.session.authenticated = true;
         req.session.role = response.role;
         req.session.username = response.username;
+        console.log(req.session.id);
+        console.log(req.session);
+        req.cookie = req.session.cookie;
         res.status(200).send(response);
       })
       .catch(error => res.status(401).json(error));
