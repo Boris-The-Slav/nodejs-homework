@@ -1,0 +1,32 @@
+.Form {
+  width: 400px;
+  display: flex;
+  background-color: #ade8f4;
+  border: 3px groove #03045e;
+  border-radius: 5px;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px auto;
+  padding: 20px;
+}
+.Form h2 {
+  margin-top: 0;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.Form__button {
+  width: auto;
+  align-self: center;
+  padding: 7px 13px;
+  border-radius: 5px;
+  margin: 20px 0px 10px 0px;
+  color: #caf0f8;
+  border: 2px solid #023e8a;
+  background-color: #023e8a;
+  font-size: 1.3rem;
+}
+
+.Form__button:hover {
+  background-color: #0077b6;
+}

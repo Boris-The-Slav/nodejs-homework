@@ -1,0 +1,44 @@
+.BlogPost {
+  border: 2px solid rgb(117, 117, 117);
+  background-color: rgba(255, 255, 255, 0.226);
+  padding: 5px 20px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.BlogPost h3 {
+  font-weight: 600;
+  padding-bottom: 5px;
+  border-bottom: 2px solid lightgrey;
+}
+
+.BlogPost__body {
+  background-color: rgba(255, 255, 255, 0.685);
+  padding: 5px;
+  padding-left: 20px;
+}
+
+.BlogPost__author {
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.BlogPost__buttonGroup {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+
+.BlogPost__button {
+  margin: 5px;
+  padding: 6px;
+  font-weight: 600;
+  background-color: #f2f2f2;
+  border: 2px solid rgb(117, 117, 117);
+  color: #03045e;
+}
+
+.BlogPost__button:hover {
+  background-color: #00b4d8;
+}

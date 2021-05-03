@@ -1,0 +1,16 @@
+.Input {
+  margin: 10px;
+  font-size: 1.3rem;
+  padding: 3px 3px;
+  width: 80%;
+  font-family: inherit;
+}
+
+.Input__select {
+  width: 30%;
+  text-align: center;
+}
+
+.Input:focus {
+  border: 3px solid #023e8a;
+}
