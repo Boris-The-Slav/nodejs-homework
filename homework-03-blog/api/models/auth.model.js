@@ -29,14 +29,38 @@ class AuthModel {
     });
   }
   registerUser = async userData => {
-    userData.password = await bcrypt.hash(userData.password, 8);
-    return fetch(`${DB_URL}.json`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(userData),
-    }).then(res => res.json());
+    try {
+      userData.password = await bcrypt.hash(userData.password, 8);
+
+      const response = await fetch(`${DB_URL}.json`);
+      const users = await response.json();
+
+      if (users) {
+        const usersArr = Object.values(users);
+        const isValidEmail = !usersArr.filter(
+          user => user.email === userData.email
+        ).length;
+        const isValidUsername = !usersArr.filter(
+          user => user.username === userData.username
+        ).length;
+        if (!isValidEmail) {
+          return Promise.reject({ message: "Email Already Registered" });
+        }
+        if (!isValidUsername) {
+          return Promise.reject({ message: "Username Already Taken" });
+        }
+      }
+
+      return fetch(`${DB_URL}.json`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      }).then(res => res.json());
+    } catch (error) {
+      return console.log(error);
+    }
   };
 }
 

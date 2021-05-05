@@ -3,12 +3,12 @@ const AuthController = require("../controllers/auth.controller");
 const authController = new AuthController();
 
 router.post("/register", (req, res) => {
-  authController.registerUser(req.body).then(data => {
-    req.session.authenticated = true;
-    req.session.role = req.body.role;
-    req.session.username = req.body.username;
-    res.status(201).send(data);
-  });
+  authController
+    .registerUser(req.body)
+    .then(data => {
+      res.status(201).send(data);
+    })
+    .catch(err => res.status(401).send(err));
 });
 
 router.post("/login", (req, res) => {
