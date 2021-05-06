@@ -119,9 +119,6 @@ const RegisterForm = props => {
         setIsRegistered(true);
       })
       .catch(err => {
-        console.log(err.response);
-        console.log(err.response.data);
-        console.log(err.response.data.message);
         setLoading(false);
         setIsDataValid(false);
         setErrorText(err.response.data.message);
