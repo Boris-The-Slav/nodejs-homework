@@ -1,8 +1,16 @@
 const fetch = require("node-fetch");
 const bcrypt = require("bcryptjs");
+const Joi = require("joi");
 
 const DB_URL =
   "https://blog-roulette-hwork-default-rtdb.europe-west1.firebasedatabase.app/users";
+
+const userSchema = Joi.object({
+  username: Joi.string().min(3).max(30).required().alphanum(),
+  password: Joi.string().min(6).max(30).required(),
+  role: Joi.string().valid("user", "admin").required(),
+  email: Joi.string().email().required(),
+});
 
 class AuthModel {
   loginWithEmailAndPassword(credentials) {
@@ -30,8 +38,11 @@ class AuthModel {
   }
   registerUser = async userData => {
     try {
+      const validatedUser = userSchema.validate(userData);
+      if (validatedUser?.error) {
+        return Promise.reject(validatedUser.error);
+      }
       userData.password = await bcrypt.hash(userData.password, 8);
-
       const response = await fetch(`${DB_URL}.json`);
       const users = await response.json();
 
@@ -44,10 +55,10 @@ class AuthModel {
           user => user.username === userData.username
         ).length;
         if (!isValidEmail) {
-          return Promise.reject({ message: "Email Already Registered" });
+          return Promise.reject({ message: "email already registered" });
         }
         if (!isValidUsername) {
-          return Promise.reject({ message: "Username Already Taken" });
+          return Promise.reject({ message: "username already taken" });
         }
       }
 
