@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from "react";
-import Navbar from "./components/Navbar/Navbar";
 import { Route } from "react-router-dom";
 
+import Navbar from "./components/Navbar/Navbar";
 import LoginForm from "./containers/LoginForm";
 import RegisterForm from "./containers/RegisterForm";
 import PostList from "./containers/PostList/PostList";

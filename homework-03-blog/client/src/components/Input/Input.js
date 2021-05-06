@@ -14,7 +14,6 @@ const Input = props => {
           {...props.inputConfig}
           value={props.value}
           onChange={e => props.onChange(e.target.value)}
-          {...props.validation}
         />
       );
       break;
@@ -26,7 +25,6 @@ const Input = props => {
           {...props.inputConfig}
           value={props.value}
           onChange={e => props.onChange(e.target.value)}
-          {...props.validation}
         />
       );
       break;

@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, Fragment } from "react";
 import Form from "../components/Form/Form";
 import { Redirect } from "react-router-dom";
+import Joi from "joi";
 
 const RegisterForm = props => {
   const [username, setUsername] = useState("");
@@ -21,20 +22,14 @@ const RegisterForm = props => {
         type: "text",
         placeholder: "Username",
       },
-      validation: {
-        required: true,
-      },
       onChange: setUsername,
       value: username,
     },
     email: {
       inputType: "input",
       elementConfig: {
-        type: "email",
+        type: "text",
         placeholder: "Email",
-      },
-      validation: {
-        required: true,
       },
       onChange: setEmail,
       value: email,
@@ -45,10 +40,6 @@ const RegisterForm = props => {
         type: "password",
         placeholder: "Password",
       },
-      validation: {
-        required: true,
-        minLength: 6,
-      },
       onChange: setPassword,
       value: password,
     },
@@ -57,10 +48,6 @@ const RegisterForm = props => {
       elementConfig: {
         type: "password",
         placeholder: "Confirm password",
-      },
-      validation: {
-        required: true,
-        minLength: 6,
       },
       onChange: setConfirmPassword,
       value: confirmPassword,
@@ -79,33 +66,45 @@ const RegisterForm = props => {
     },
   };
 
-  const validateInputs = inputs => {
-    return inputs.every(input => input);
-  };
-  const validatePassword = (password, confirmPassword) => {
-    return password === confirmPassword;
+  const validateForm = formInputs => {
+    const userSchema = Joi.object({
+      username: Joi.string().min(3).max(30).required().alphanum(),
+      password: Joi.string().min(6).max(30).required(),
+      confirmPassword: Joi.string().required().valid(Joi.ref("password")),
+      role: Joi.string().valid("user", "admin").required(),
+      email: Joi.string()
+        .email({ tlds: { allow: ["com", "net"] } })
+        .required(),
+    });
+
+    return userSchema
+      .messages({
+        "string.empty": "All fields required",
+        "any.only": "Passwords must match",
+        "string.email": "Email must be valid",
+      })
+      .validate(formInputs);
   };
 
   const onFormSubmit = e => {
-    const isValidInputs = validateInputs([
+    e.preventDefault();
+
+    const validatedInputs = validateForm({
       username,
       password,
       confirmPassword,
       email,
       role,
-    ]);
-    const isValidPassword = validatePassword(password, confirmPassword);
-    e.preventDefault();
-    if (!isValidInputs) {
+    });
+
+    console.log(validatedInputs);
+
+    if (validatedInputs?.error) {
       setIsDataValid(false);
-      setErrorText("All fields must be filled");
+      setErrorText(validatedInputs?.error.details[0].message);
       return;
     }
-    if (!isValidPassword) {
-      setIsDataValid(false);
-      setErrorText("Passwords must match");
-      return;
-    }
+
     setLoading(true);
     axios
       .post("http://localhost:3001/api/auth/register", {

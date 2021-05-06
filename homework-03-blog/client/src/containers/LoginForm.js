@@ -13,10 +13,9 @@ const LoginForm = props => {
     email: {
       inputType: "input",
       elementConfig: {
-        type: "email",
+        type: "text",
         placeholder: "Email",
       },
-      validation: {},
       onChange: setEmail,
       value: email,
     },
@@ -26,7 +25,6 @@ const LoginForm = props => {
         type: "password",
         placeholder: "Password",
       },
-      validation: {},
       onChange: setPassword,
       value: password,
     },
@@ -37,6 +35,7 @@ const LoginForm = props => {
     setLoading(true);
     if (!password || !email) {
       setIsDataValid(false);
+      setLoading(false);
     } else {
       axios
         .post(
@@ -52,7 +51,11 @@ const LoginForm = props => {
           });
           props.onLogin(true);
         })
-        .catch(err => setIsDataValid(false));
+        .catch(err => {
+          console.log("in the error handler");
+          setIsDataValid(false);
+          setLoading(false);
+        });
     }
   };
 
