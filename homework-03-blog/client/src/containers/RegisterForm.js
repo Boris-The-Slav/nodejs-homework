@@ -106,6 +106,7 @@ const RegisterForm = props => {
     }
 
     setLoading(true);
+    setIsDataValid(true);
     axios
       .post("http://localhost:3001/api/auth/register", {
         username,
@@ -118,8 +119,12 @@ const RegisterForm = props => {
         setIsRegistered(true);
       })
       .catch(err => {
+        console.log(err.response);
+        console.log(err.response.data);
+        console.log(err.response.data.message);
         setLoading(false);
-        setErrorText(err);
+        setIsDataValid(false);
+        setErrorText(err.response.data.message);
       });
   };
 

@@ -8,7 +8,7 @@ router.post("/register", (req, res) => {
     .then(data => {
       res.status(201).send(data);
     })
-    .catch(err => res.status(401).send(err));
+    .catch(err => res.status(400).json(err));
 });
 
 router.post("/login", (req, res) => {
@@ -25,7 +25,7 @@ router.post("/login", (req, res) => {
         req.cookie = req.session.cookie;
         res.status(200).send(response);
       })
-      .catch(error => res.status(401).json(error));
+      .catch(error => res.status(400).json(error));
   }
 });
 

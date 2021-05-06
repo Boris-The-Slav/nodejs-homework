@@ -40,7 +40,7 @@ class AuthModel {
     try {
       const validatedUser = userSchema.validate(userData);
       if (validatedUser?.error) {
-        return Promise.reject(validatedUser.error);
+        return Promise.reject(validatedUser.error.details[0]);
       }
       userData.password = await bcrypt.hash(userData.password, 8);
       const response = await fetch(`${DB_URL}.json`);
@@ -55,10 +55,10 @@ class AuthModel {
           user => user.username === userData.username
         ).length;
         if (!isValidEmail) {
-          return Promise.reject({ message: "email already registered" });
+          return Promise.reject({ message: "Email already registered" });
         }
         if (!isValidUsername) {
-          return Promise.reject({ message: "username already taken" });
+          return Promise.reject({ message: "Username already taken" });
         }
       }
 
