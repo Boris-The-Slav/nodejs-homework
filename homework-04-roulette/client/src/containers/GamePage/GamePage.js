@@ -41,8 +41,6 @@ const GamePage = props => {
       setIsBetValid(false);
       console.log("you've reached the end");
     }
-
-    //IF CURRENT BET IS BIGGUR THAN PLAYER BALANCE DO LOGIC I'M DONE
   }, [playerBalance, betAmmount]);
 
   useEffect(() => {
