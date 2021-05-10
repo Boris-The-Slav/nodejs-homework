@@ -1,0 +1,16 @@
+.RouletteTable {
+  margin: auto;
+  width: 1450px;
+  height: 520px;
+  /* background-color: rgba(0, 255, 255, 0.445); */
+  display: grid;
+  grid-template-columns: 1fr repeat(12, 1fr);
+  grid-template-rows: repeat(3, 1fr) 0.7fr 0.7fr;
+}
+
+.Image {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  background-color: white;
+}

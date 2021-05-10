@@ -1,0 +1,47 @@
+.Chip {
+  width: 65px;
+  height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: -9px;
+  right: -9px;
+  z-index: 1;
+  position: absolute;
+}
+
+.Chip__outer {
+  transform: scale(0.138);
+  width: 400px;
+  height: 400px;
+  border: 20px solid goldenrod;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Chip__inner {
+  width: 340px;
+  height: 340px;
+  border: 40px dashed rgb(0, 0, 180);
+  background-color: gold;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Chip__inner2 {
+  width: 340px;
+  height: 340px;
+  background-color: rgb(0, 0, 180);
+  border: 10px solid goldenrod;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 175px;
+}
