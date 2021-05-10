@@ -6,8 +6,6 @@ import auth from "../../api/auth";
 import classes from "./PlayerDashboard.module.css";
 
 const PlayerDashboard = props => {
-  console.log(props.playerBalance);
-  console.log(classes);
   const {
     chipIndexValue,
     onBetValueChange,

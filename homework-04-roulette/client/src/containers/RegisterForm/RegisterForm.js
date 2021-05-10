@@ -108,7 +108,12 @@ const RegisterForm = props => {
     setIsDataValid(true);
 
     auth
-      .post("/register", { username, email, password, balance })
+      .post("/register", {
+        username,
+        email,
+        password,
+        balance: Number(balance),
+      })
       .then(res => {
         setLoading(false);
         setIsRegistered(true);
